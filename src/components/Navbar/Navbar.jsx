@@ -1,7 +1,7 @@
 import "./Navbar.scss";
 import Logo from "../../assets/tomato.svg?react";
 
-function Navbar() {
+function Navbar({ toggleSettings }) {
   return (
     <header className="header">
       <nav className="nav-bar">
@@ -13,7 +13,9 @@ function Navbar() {
             </a>
           </li>
           <li>
-            <button className="nav-list__btn">Settings</button>
+            <button className="nav-list__btn" onClick={toggleSettings}>
+              Settings
+            </button>
           </li>
         </ul>
       </nav>
