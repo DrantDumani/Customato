@@ -1,0 +1,21 @@
+@use "./styles/partials/fonts" as *;
+@use "./styles/partials/variables" as *;
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $RobotoFont, Arial, Helvetica, sans-serif;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}

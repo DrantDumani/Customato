@@ -1,6 +1,40 @@
+@use "../../styles/partials/variables" as *;
+
+.nav-bar {
+  border-bottom: 2.5px solid #000;
+  background-color: #e5ffe5;
+}
+
 .nav-list {
+  padding: 1rem $mob-hor-pad;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   &__logo {
-    width: 16px;
-    height: 16px;
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  &__link {
+    font-weight: 700;
+    font-size: 1.75rem;
+    color: #3c3c3c;
+    display: flex;
+    gap: 0.4rem;
+  }
+
+  &__btn {
+    font-size: 1.125rem;
+    font-weight: $demi-bold;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 0.25rem;
+    font-family: inherit;
+    padding: 0.5rem;
+
+    &:hover {
+      background-color: rgba(210, 210, 210, 0.7);
+    }
   }
 }

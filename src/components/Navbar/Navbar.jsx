@@ -7,8 +7,8 @@ function Navbar() {
       <nav className="nav-bar">
         <ul className="nav-list">
           <li>
-            <Logo className="nav-list__logo" />
             <a href="/" className="nav-list__link">
+              <Logo className="nav-list__logo" />
               Customato
             </a>
           </li>
