@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.scss";
 import { Navbar } from "./components/Navbar/Navbar";
-import { Timer } from "./components/Timer/Timer";
+import { TimerContainer } from "./components/TimerContainer/TimerContainer";
 
 function App() {
   const [displaySettings, setDisplaySettings] = useState(false);
@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       <Navbar toggleSettings={toggleSettings} />
-      <Timer />
+      <TimerContainer />
     </>
   );
 }

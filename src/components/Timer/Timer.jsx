@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import sfx from "../../assets/audio/ClockTower.wav";
 
-function Timer() {
-  const [timers, setTimers] = useState({
-    tomato: 1000 * 60, //1500000,
-    shortBreak: 1000 * 30, //300000,
-    longBreak: 1000 * 45, //900000,
-  });
+function Timer({ timers }) {
+  // const [timers, setTimers] = useState({
+  //   tomato: 1000 * 60, //1500000,
+  //   shortBreak: 1000 * 30, //300000,
+  //   longBreak: 1000 * 45, //900000,
+  // });
 
   const [cycle, setCycle] = useState(0);
   const [isCountdown, setIsCountdown] = useState(false);
