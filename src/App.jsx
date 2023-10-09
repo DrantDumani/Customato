@@ -8,12 +8,11 @@ function App() {
 
   const toggleSettings = () => {
     setDisplaySettings(!displaySettings);
-    console.log(664949);
   };
   return (
     <>
       <Navbar toggleSettings={toggleSettings} />
-      <TimerContainer />
+      <TimerContainer displaySettings={displaySettings} />
     </>
   );
 }

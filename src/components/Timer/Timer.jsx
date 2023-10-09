@@ -1,50 +1,9 @@
-import { useEffect, useState } from "react";
-import sfx from "../../assets/audio/ClockTower.wav";
-
-function Timer({ timers }) {
-  // const [timers, setTimers] = useState({
-  //   tomato: 1000 * 60, //1500000,
-  //   shortBreak: 1000 * 30, //300000,
-  //   longBreak: 1000 * 45, //900000,
-  // });
-
-  const [cycle, setCycle] = useState(0);
-  const [isCountdown, setIsCountdown] = useState(false);
-  const [activeTimer, setActiveTimer] = useState("tomato");
-  const [currentTime, setCurrentTime] = useState(timers[activeTimer]);
-
-  const swapTimerOnBtnClick = (str) => {
-    setIsCountdown(false);
-    setActiveTimer(str);
-    setCurrentTime(timers[str]);
-  };
-
-  useEffect(() => {
-    const alarm = new Audio(sfx);
-
-    if (isCountdown) {
-      const id = setInterval(() => {
-        setCurrentTime((time) => {
-          if (time <= 0) {
-            const nextCycle =
-              activeTimer === "tomato" ? (cycle + 1) % 4 : cycle;
-            const currBreak = nextCycle === 0 ? "longBreak" : "shortBreak";
-            const nextActiveTimer =
-              activeTimer === "tomato" ? currBreak : "tomato";
-            setCycle(nextCycle);
-            setActiveTimer(nextActiveTimer);
-            alarm.play();
-            return timers[nextActiveTimer];
-          } else {
-            return time - 1000;
-          }
-        });
-      }, 1000);
-
-      return () => clearInterval(id);
-    }
-  }, [activeTimer, isCountdown, cycle, timers]);
-
+function Timer({
+  isCountdown,
+  toggleCountdown,
+  currentTime,
+  swapTimerOnBtnClick,
+}) {
   return (
     <div className="timer-container">
       <ul className="timer-btn-list">
@@ -74,12 +33,7 @@ function Timer({ timers }) {
         ).padStart(2, "0")}`}
       </h2>
 
-      <button
-        className="timer-container__btn"
-        onClick={() => {
-          setIsCountdown(!isCountdown);
-        }}
-      >
+      <button className="timer-container__btn" onClick={toggleCountdown}>
         {isCountdown ? "Pause" : "Play"}
       </button>
     </div>
