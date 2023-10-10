@@ -1,10 +1,8 @@
 @use "../../styles/partials/mixins" as *;
-// @use "../../styles/partials/variables" as *;
 
 .main-content {
   flex-grow: 1;
-  // margin: $mob-hor-pad;
-  // border-radius: 0.25rem;
+
   &--light {
     @include main-light;
     border: 1px solid #000;

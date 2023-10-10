@@ -29,7 +29,11 @@ function App() {
         mode={mode}
         toggleMode={toggleMode}
       />
-      <TimerContainer displaySettings={displaySettings} mode={mode} />
+      <TimerContainer
+        displaySettings={displaySettings}
+        mode={mode}
+        toggleSettings={toggleSettings}
+      />
     </>
   );
 }

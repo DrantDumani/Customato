@@ -4,7 +4,7 @@ import { UserSettings } from "../UserSettings/UserSettings";
 import sfx from "../../assets/audio/ClockTower.wav";
 import "./TimerContainer.scss";
 
-function TimerContainer({ displaySettings, mode }) {
+function TimerContainer({ displaySettings, mode, toggleSettings }) {
   const [timers, setTimers] = useState({
     tomato: 25,
     shortBreak: 5,
@@ -101,6 +101,8 @@ function TimerContainer({ displaySettings, mode }) {
           formBreakCycle={formBreakCycle}
           editTimerInfo={editTimerInfo}
           handleValidSubmission={handleValidSubmission}
+          toggleSettings={toggleSettings}
+          mode={mode}
         />
       )}
     </main>

@@ -3,7 +3,7 @@
 
 .timer-container {
   padding: $mob-ver-pad $mob-hor-pad;
-  margin: $mob-ver-pad;
+  margin: $mob-ver-pad $mob-hor-pad;
   border-radius: 0.25rem;
   text-align: center;
   &--light {
