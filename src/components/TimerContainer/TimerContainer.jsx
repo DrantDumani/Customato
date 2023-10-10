@@ -75,7 +75,7 @@ function TimerContainer({ displaySettings, mode }) {
           setActiveTimer(nextActiveTimer);
           alarm.play();
           setCurrentTime(timers[nextActiveTimer] * 60000);
-          timerRef.current = timers[nextActiveTimer];
+          timerRef.current = timers[nextActiveTimer] * 60000;
         }
       }, 1000);
       return () => clearInterval(id);
