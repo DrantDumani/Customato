@@ -8,6 +8,9 @@
   width: 100%;
   min-height: 100vh;
   padding: 0 $mob-hor-pad;
+  @include tablet {
+    padding: 0 2.5rem;
+  }
 }
 
 .form-container {
@@ -16,6 +19,13 @@
   top: 5rem;
   padding: 1rem 1.5rem;
   border-radius: 0.25rem;
+  @include tablet {
+    top: 6.5rem;
+  }
+  @include desktop {
+    max-width: 43.75rem;
+    margin: 0 auto;
+  }
   &--light {
     background-color: $light-mode;
   }

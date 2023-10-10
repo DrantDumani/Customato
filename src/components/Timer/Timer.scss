@@ -6,6 +6,15 @@
   margin: $mob-ver-pad $mob-hor-pad;
   border-radius: 0.25rem;
   text-align: center;
+  @include tablet {
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+    margin-top: 2.5rem;
+  }
+  @include desktop {
+    max-width: 700px;
+    margin: 2.5rem auto;
+  }
   &--light {
     border: 1px solid #000;
   }
@@ -43,6 +52,7 @@
 .timer-btn-list {
   display: flex;
   gap: 0.5rem;
+  justify-content: center;
 
   &__btn {
     @include navbar-btns;

@@ -5,10 +5,8 @@
 
   &--light {
     @include main-light;
-    border: 1px solid #000;
   }
   &--dark {
     @include main-dark;
-    border: 1px solid #fff;
   }
 }
