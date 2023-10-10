@@ -1,3 +1,5 @@
+@use "./variables" as *;
+
 @mixin tablet {
   @media (min-width: 768px) {
     @content;
@@ -8,4 +10,39 @@
   @media (min-width: 1280px) {
     @content;
   }
+}
+
+@mixin light-navbar {
+  border-bottom: $light-mode-border;
+  background-color: $light-mode-navbar;
+  color: $light-mode-font;
+}
+
+@mixin dark-navbar {
+  border-bottom: $dark-mode-border;
+  background-color: $dark-mode-navbar;
+  color: $dark-mode-font;
+}
+
+@mixin light-btn {
+  background-color: $light-mode;
+  border: $light-mode-btn-border;
+  color: $light-mode-font;
+}
+
+@mixin dark-btn {
+  background-color: $dark-mode;
+  border: $dark-mode-btn-border;
+  color: $dark-mode-font;
+}
+
+@mixin navbar-btns {
+  border-radius: 0.25rem;
+  height: 2.5rem;
+  padding: 0.5rem;
+}
+
+@mixin mobile-svg {
+  width: 1.75rem;
+  height: 1.75rem;
 }

@@ -5,3 +5,20 @@ $bold: 700;
 
 //padding
 $mob-hor-pad: 1rem;
+
+// colors
+$light-mode: #f9f9f9;
+$light-mode-navbar: #eeeeee;
+$light-mode-font: #000000;
+$light-mode-border: 2.5px solid $light-mode-font;
+$light-mode-tomato-stem: $light-mode-font;
+$light-mode-btn-border: 1px solid $light-mode-font;
+$light-mode-hover: #dedede;
+
+$dark-mode: #373737;
+$dark-mode-navbar: #1e1e1e;
+$dark-mode-font: #fff;
+$dark-mode-border: 2.5px solid $dark-mode-font;
+$dark-mode-tomato-stem: $dark-mode-font;
+$dark-mode-btn-border: 1px solid $dark-mode-font;
+$dark-mode-hover: #0f0f0f;

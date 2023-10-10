@@ -1,8 +1,13 @@
 @use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
 
 .nav-bar {
-  border-bottom: 2.5px solid #000;
-  background-color: #e5ffe5;
+  &--light {
+    @include light-navbar;
+  }
+  &--dark {
+    @include dark-navbar;
+  }
 }
 
 .nav-list {
@@ -10,31 +15,62 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 0.5rem;
 
   &__logo {
-    width: 1.75rem;
-    height: 1.75rem;
+    @include mobile-svg;
   }
 
   &__link {
     font-weight: 700;
     font-size: 1.75rem;
-    color: #3c3c3c;
     display: flex;
     gap: 0.4rem;
+    color: inherit;
+  }
+
+  &__left-item {
+    margin-left: auto;
+  }
+
+  &__toggle-btn {
+    @include navbar-btns;
+    display: flex;
+    align-items: center;
+    &--light {
+      @include light-btn;
+      &:hover {
+        background-color: $light-mode-hover;
+      }
+    }
+    &--dark {
+      @include dark-btn;
+      &:hover {
+        background-color: $dark-mode-hover;
+      }
+    }
+  }
+
+  &__svg {
+    @include mobile-svg;
   }
 
   &__btn {
+    @include navbar-btns;
     font-size: 1.125rem;
     font-weight: $demi-bold;
-    background-color: #fff;
-    border: 1px solid #000;
-    border-radius: 0.25rem;
     font-family: inherit;
-    padding: 0.5rem;
-
-    &:hover {
-      background-color: rgba(210, 210, 210, 0.7);
+    &--light {
+      @include light-btn;
+      &:hover {
+        background-color: $light-mode-hover;
+      }
+    }
+    &--dark {
+      @include dark-btn;
+      &:hover {
+        background-color: $dark-mode-hover;
+      }
     }
   }
 }
