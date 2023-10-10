@@ -5,9 +5,11 @@ $bold: 700;
 
 //padding
 $mob-hor-pad: 1rem;
+$mob-ver-pad: 1.5rem;
 
 // colors
 $light-mode: #f9f9f9;
+$light-mode-main-btn: #e8e8e8;
 $light-mode-navbar: #eeeeee;
 $light-mode-font: #000000;
 $light-mode-border: 2.5px solid $light-mode-font;
@@ -16,6 +18,7 @@ $light-mode-btn-border: 1px solid $light-mode-font;
 $light-mode-hover: #dedede;
 
 $dark-mode: #373737;
+$dark-mode-main-btn: #1d1d1d;
 $dark-mode-navbar: #1e1e1e;
 $dark-mode-font: #fff;
 $dark-mode-border: 2.5px solid $dark-mode-font;

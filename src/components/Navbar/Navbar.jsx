@@ -1,5 +1,5 @@
 import "./Navbar.scss";
-import Logo from "../../assets/tomato.svg?react";
+import Logo from "../../assets/icons/tomato.svg?react";
 import Sun from "../../assets/icons/sun.svg?react";
 import Moon from "../../assets/icons/moon.svg?react";
 

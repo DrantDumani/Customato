@@ -30,10 +30,20 @@
   color: $light-mode-font;
 }
 
+@mixin light-timer-btn {
+  @include light-btn;
+  background-color: $light-mode-main-btn;
+}
+
 @mixin dark-btn {
   background-color: $dark-mode;
   border: $dark-mode-btn-border;
   color: $dark-mode-font;
+}
+
+@mixin dark-timer-btn {
+  @include dark-btn;
+  background-color: $dark-mode-main-btn;
 }
 
 @mixin navbar-btns {
@@ -45,4 +55,14 @@
 @mixin mobile-svg {
   width: 1.75rem;
   height: 1.75rem;
+}
+
+@mixin main-light {
+  background-color: $light-mode;
+  color: $light-mode-font;
+}
+
+@mixin main-dark {
+  background-color: $dark-mode;
+  color: $dark-mode-font;
 }

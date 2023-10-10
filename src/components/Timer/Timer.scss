@@ -1,0 +1,71 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.timer-container {
+  padding: $mob-ver-pad $mob-hor-pad;
+  margin: $mob-ver-pad;
+  border-radius: 0.25rem;
+  text-align: center;
+  &--light {
+    border: 1px solid #000;
+  }
+  &--dark {
+    border: 1px solid #fff;
+  }
+
+  &__time {
+    font-size: 112px;
+  }
+
+  &__btn {
+    @include navbar-btns;
+    font-family: inherit;
+    font-weight: $demi-bold;
+    font-size: 1.75rem;
+    width: 100%;
+    max-width: 18.75rem;
+    height: 3.125rem;
+    &--light {
+      @include light-timer-btn;
+      &:hover {
+        background-color: $light-mode;
+      }
+    }
+    &--dark {
+      @include dark-timer-btn;
+      &:hover {
+        background-color: $dark-mode;
+      }
+    }
+  }
+}
+
+.timer-btn-list {
+  display: flex;
+  gap: 0.5rem;
+
+  &__btn {
+    @include navbar-btns;
+    flex-basis: 33%;
+    max-width: 6.25rem;
+    height: 1.875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: $demi-bold;
+    font-family: inherit;
+    font-size: 0.875rem;
+    &--light {
+      @include light-timer-btn;
+      &:hover {
+        background-color: $light-mode;
+      }
+    }
+    &--dark {
+      @include dark-timer-btn;
+      &:hover {
+        background-color: $dark-mode;
+      }
+    }
+  }
+}

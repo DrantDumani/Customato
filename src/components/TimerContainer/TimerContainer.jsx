@@ -2,8 +2,9 @@ import { useState, useRef, useEffect } from "react";
 import { Timer } from "../Timer/Timer";
 import { UserSettings } from "../UserSettings/UserSettings";
 import sfx from "../../assets/audio/ClockTower.wav";
+import "./TimerContainer.scss";
 
-function TimerContainer({ displaySettings }) {
+function TimerContainer({ displaySettings, mode }) {
   const [timers, setTimers] = useState({
     tomato: 25,
     shortBreak: 5,
@@ -82,12 +83,17 @@ function TimerContainer({ displaySettings }) {
   }, [activeTimer, isCountdown, longBreakCycle, timers]);
 
   return (
-    <main>
+    <main
+      className={`main-content ${
+        mode ? "main-content--light" : "main-content--dark"
+      }`}
+    >
       <Timer
         isCountdown={isCountdown}
         toggleCountdown={toggleCountdown}
         currentTime={currentTime}
         swapTimerOnBtnClick={swapTimerOnBtnClick}
+        mode={mode}
       />
       {displaySettings && (
         <UserSettings
