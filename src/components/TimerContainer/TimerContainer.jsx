@@ -20,6 +20,23 @@ function TimerContainer({ displaySettings, mode, toggleSettings }) {
   const [formTimers, setFormTimers] = useState({ ...timers });
   const [formBreakCycle, setFormBreakCycle] = useState(longBreakCycle);
 
+  useEffect(() => {
+    const timers = localStorage.getItem("timers");
+    if (timers !== null) {
+      const timerObj = JSON.parse(timers);
+      setTimers(timerObj);
+      const currTime = timerObj["tomato"] * 60000;
+      setCurrentTime(currTime);
+      timerRef.current = currTime;
+      setFormTimers(timerObj);
+    }
+    const breakCycle = JSON.parse(localStorage.getItem("longBreakCycle"));
+    if (breakCycle !== null) {
+      setLongBreakCycle(breakCycle);
+      setFormBreakCycle(breakCycle);
+    }
+  }, []);
+
   const initTimers = (newTimer) => {
     cycleRef.current = 0;
     timerRef.current = newTimer;
@@ -52,7 +69,9 @@ function TimerContainer({ displaySettings, mode, toggleSettings }) {
 
   const handleValidSubmission = () => {
     setTimers({ ...formTimers });
-    setLongBreakCycle({ ...longBreakCycle });
+    localStorage.setItem("timers", JSON.stringify(formTimers));
+    setLongBreakCycle(formBreakCycle);
+    localStorage.setItem("longBreakCycle", formBreakCycle);
     const newTimer = formTimers[activeTimer] * 60000;
     initTimers(newTimer);
   };

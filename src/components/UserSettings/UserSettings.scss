@@ -8,6 +8,7 @@
   width: 100%;
   min-height: 100vh;
   padding: 0 $mob-hor-pad;
+  overflow-y: auto;
   @include tablet {
     padding: 0 2.5rem;
   }

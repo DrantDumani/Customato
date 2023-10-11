@@ -49,7 +49,10 @@ function UserSettings({
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            if (validateValues) handleValidSubmission();
+            if (validateValues) {
+              handleValidSubmission();
+              toggleSettings();
+            }
           }}
           className="timer-form"
         >
