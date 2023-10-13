@@ -73,7 +73,6 @@ function TimerContainer({ displaySettings, mode, toggleSettings }) {
     }
 
     localforage.getItem("alarmAudio").then((arr) => {
-      console.log(arr);
       if (arr !== null) {
         setAlarmAudio(arr);
       }
@@ -122,7 +121,7 @@ function TimerContainer({ displaySettings, mode, toggleSettings }) {
   useEffect(() => {
     let chosenAlarm;
     const customAlarm = alarmAudio[activeTimer];
-    if (customAlarm) {
+    if (customAlarm && customAlarm.type === "audio/mpeg") {
       chosenAlarm = new Audio(URL.createObjectURL(customAlarm));
     } else {
       chosenAlarm = new Audio(sfx);
