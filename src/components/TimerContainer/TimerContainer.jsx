@@ -38,7 +38,21 @@ function TimerContainer({ displaySettings, mode, toggleSettings }) {
     newBank.push(audio);
     const newAlarmAudio = { ...alarmAudio, bank: newBank };
     setAlarmAudio(newAlarmAudio);
-    localforage.setItem(newAlarmAudio);
+    localforage.setItem("alarmAudio", newAlarmAudio);
+  };
+
+  const deleteAudio = (audioName) => {
+    const newAlarmAudio = { ...alarmAudio };
+    const newBank = alarmAudio.bank.filter((el) => el.name !== audioName);
+    const timerNames = ["tomato", "shortBreak", "longBreak"];
+    timerNames.forEach((tName) => {
+      if (newAlarmAudio[tName].name === audioName) {
+        newAlarmAudio[tName] = "";
+      }
+    });
+    newAlarmAudio.bank = newBank;
+    setAlarmAudio(newAlarmAudio);
+    localforage.setItem("alarmAudio", newAlarmAudio);
   };
 
   useEffect(() => {
@@ -161,6 +175,7 @@ function TimerContainer({ displaySettings, mode, toggleSettings }) {
           alarmAudio={alarmAudio}
           assignAlarm={assignAlarm}
           addAudio={addAudio}
+          deleteAudio={deleteAudio}
         />
       )}
     </main>

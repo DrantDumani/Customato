@@ -11,6 +11,7 @@ function UserSettings({
   alarmAudio,
   assignAlarm,
   addAudio,
+  deleteAudio,
 }) {
   const formValueNames = ["tomato", "shortBreak", "longBreak", "cycle"];
   const validateValues = (form) => {
@@ -185,6 +186,10 @@ function UserSettings({
               >
                 <p className="timer-form__audio-name">{el.name}</p>
                 <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    deleteAudio(el.name);
+                  }}
                   className={`timer-form__audio-del-btn ${
                     mode
                       ? "timer-form__audio-del-btn--light"
