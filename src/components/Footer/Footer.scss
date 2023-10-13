@@ -2,12 +2,29 @@
 
 .footer {
   padding: 1rem 0;
+  display: flex;
+  justify-content: center;
   &--light {
     @include light-navbar;
-    border-top: 1px solid #000;
+    border-top: 2px solid #000;
+    border-bottom: none;
   }
   &--dark {
     @include dark-navbar;
-    border-top: 1px solid #fff;
+    border-top: 2px solid #fff;
+    border-bottom: none;
+  }
+
+  &__text {
+    font-size: 1.125rem;
+  }
+  &__link {
+    font-size: 1.125rem;
+    &--light {
+      color: #00168f;
+    }
+    &--dark {
+      color: #acd6e4;
+    }
   }
 }
