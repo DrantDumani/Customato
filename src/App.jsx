@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.scss";
 import { Navbar } from "./components/Navbar/Navbar";
 import { TimerContainer } from "./components/TimerContainer/TimerContainer";
+import { Footer } from "./components/Footer/Footer";
 
 function App() {
   const [displaySettings, setDisplaySettings] = useState(false);
@@ -44,6 +45,7 @@ function App() {
         mode={mode}
         toggleSettings={toggleSettings}
       />
+      <Footer mode={mode} />
     </>
   );
 }

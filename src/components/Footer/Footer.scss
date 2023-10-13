@@ -1,0 +1,13 @@
+@use "../../styles/partials/mixins" as *;
+
+.footer {
+  padding: 1rem 0;
+  &--light {
+    @include light-navbar;
+    border-top: 1px solid #000;
+  }
+  &--dark {
+    @include dark-navbar;
+    border-top: 1px solid #fff;
+  }
+}
