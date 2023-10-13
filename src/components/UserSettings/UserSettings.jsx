@@ -62,7 +62,7 @@ function UserSettings({
           className="timer-form"
         >
           <fieldset className="timer-form__fieldset">
-            <legend className="timer-form__legend">Timer</legend>
+            <legend className="timer-form__legend">Timers</legend>
             <div className="timer-form__label-container">
               <label className="timer-form__label" htmlFor="tomato">
                 Customato
