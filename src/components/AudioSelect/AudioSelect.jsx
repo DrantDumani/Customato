@@ -16,7 +16,7 @@ function AudioSelect({ mode, alarmAudio, timerName, assignAlarm }) {
         onChange={(e) => {
           assignAlarm(e.target.value, timerName);
         }}
-        className={`timer-form__input ${
+        className={`timer-form__input timer-form__input--select ${
           mode ? "timer-form__input--light" : "timer-form__input--dark"
         }`}
         id={`${timerName}Alarm`}
