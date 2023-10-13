@@ -9,8 +9,9 @@ function Footer({ mode }) {
           className={`footer__link ${
             mode ? "footer__link--light" : "footer__link--dark"
           } `}
-          href=""
+          href="https://github.com/DrantDumani/Customato"
           target="_blank"
+          rel="noreferrer"
         >
           Github
         </a>
