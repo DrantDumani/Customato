@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Timer } from "../Timer/Timer";
 import { UserSettings } from "../UserSettings/UserSettings";
-import sfx from "../../assets/audio/ClockTower.wav";
+import sfx from "../../assets/audio/beep.mp3";
 import "./TimerContainer.scss";
 import localforage from "localforage";
 
