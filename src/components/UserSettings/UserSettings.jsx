@@ -1,4 +1,5 @@
 import "./UserSettings.scss";
+import { AudioSelect } from "../AudioSelect/AudioSelect";
 
 function UserSettings({
   formTimers,
@@ -7,6 +8,9 @@ function UserSettings({
   handleValidSubmission,
   toggleSettings,
   mode,
+  alarmAudio,
+  assignAlarm,
+  addAudio,
 }) {
   const formValueNames = ["tomato", "shortBreak", "longBreak", "cycle"];
   const validateValues = (form) => {
@@ -119,12 +123,80 @@ function UserSettings({
               />
             </div>
           </fieldset>
+
           <fieldset className="timer-form__fieldset">
             <legend className="timer-form__legend">Audio</legend>
+
+            <div className="timer-form__audio-select-container">
+              <div className="timer-form__label-container timer-form__label-container--audio">
+                <AudioSelect
+                  assignAlarm={assignAlarm}
+                  mode={mode}
+                  alarmAudio={alarmAudio}
+                  timerName={"tomato"}
+                />
+              </div>
+
+              <div className="timer-form__label-container timer-form__label-container--audio">
+                <AudioSelect
+                  assignAlarm={assignAlarm}
+                  mode={mode}
+                  alarmAudio={alarmAudio}
+                  timerName={"shortBreak"}
+                />
+              </div>
+
+              <div className="timer-form__label-container timer-form__label-container--audio">
+                <AudioSelect
+                  assignAlarm={assignAlarm}
+                  mode={mode}
+                  alarmAudio={alarmAudio}
+                  timerName={"longBreak"}
+                />
+              </div>
+            </div>
+
+            <div className="timer-form__label-container">
+              <label
+                className={`timer-form__label timer-form__label--audio ${
+                  mode
+                    ? "timer-form__label--audio-light"
+                    : "timer-form__label--audio-dark"
+                }`}
+                htmlFor="upload-audio"
+              >
+                Upload Audio
+              </label>
+              <input
+                className={`timer-form__input timer-form__input--audio`}
+                id="upload-audio"
+                type="file"
+                accept="audio/mpeg"
+                onInput={(e) => {
+                  addAudio(e.target.files[0]);
+                }}
+              />
+            </div>
+
+            {alarmAudio.bank.map((el, i) => (
+              <div
+                key={i}
+                className="timer-form__label-container timer-form__label-container--del-audio"
+              >
+                <p className="timer-form__audio-name">{el.name}</p>
+                <button
+                  className={`timer-form__audio-del-btn ${
+                    mode
+                      ? "timer-form__audio-del-btn--light"
+                      : "timer-form__audio-del-btn--dark"
+                  }  `}
+                >
+                  Delete
+                </button>
+              </div>
+            ))}
           </fieldset>
-          <fieldset className="timer-form__fieldset">
-            <legend className="timer-form__legend">Appearance</legend>
-          </fieldset>
+
           <button
             className={`timer-form__submit-btn ${
               mode

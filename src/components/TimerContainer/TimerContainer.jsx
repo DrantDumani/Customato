@@ -3,12 +3,17 @@ import { Timer } from "../Timer/Timer";
 import { UserSettings } from "../UserSettings/UserSettings";
 import sfx from "../../assets/audio/ClockTower.wav";
 import "./TimerContainer.scss";
+import localforage from "localforage";
 
 function TimerContainer({ displaySettings, mode, toggleSettings }) {
   const [timers, setTimers] = useState({
     tomato: 25,
     shortBreak: 5,
     longBreak: 15,
+  });
+
+  const [alarmAudio, setAlarmAudio] = useState({
+    bank: [],
   });
 
   const [isCountdown, setIsCountdown] = useState(false);
@@ -20,6 +25,22 @@ function TimerContainer({ displaySettings, mode, toggleSettings }) {
   const [formTimers, setFormTimers] = useState({ ...timers });
   const [formBreakCycle, setFormBreakCycle] = useState(longBreakCycle);
 
+  const assignAlarm = (alarmName, timerName) => {
+    const newAlarmAudio = structuredClone(alarmAudio);
+    const selectedAlarm = alarmAudio.bank.find((el) => el.name === alarmName);
+    newAlarmAudio[timerName] = selectedAlarm;
+    setAlarmAudio(newAlarmAudio);
+    localforage.setItem("alarmAudio", newAlarmAudio);
+  };
+
+  const addAudio = (audio) => {
+    const newBank = [...alarmAudio.bank];
+    newBank.push(audio);
+    const newAlarmAudio = { ...alarmAudio, bank: newBank };
+    setAlarmAudio(newAlarmAudio);
+    localforage.setItem(newAlarmAudio);
+  };
+
   useEffect(() => {
     const timers = localStorage.getItem("timers");
     if (timers !== null) {
@@ -30,11 +51,19 @@ function TimerContainer({ displaySettings, mode, toggleSettings }) {
       timerRef.current = currTime;
       setFormTimers(timerObj);
     }
+
     const breakCycle = JSON.parse(localStorage.getItem("longBreakCycle"));
     if (breakCycle !== null) {
       setLongBreakCycle(breakCycle);
       setFormBreakCycle(breakCycle);
     }
+
+    localforage.getItem("alarmAudio").then((arr) => {
+      console.log(arr);
+      if (arr !== null) {
+        setAlarmAudio(arr);
+      }
+    });
   }, []);
 
   const initTimers = (newTimer) => {
@@ -77,7 +106,13 @@ function TimerContainer({ displaySettings, mode, toggleSettings }) {
   };
 
   useEffect(() => {
-    const alarm = new Audio(sfx);
+    let chosenAlarm;
+    const customAlarm = alarmAudio[activeTimer];
+    if (customAlarm) {
+      chosenAlarm = new Audio(URL.createObjectURL(customAlarm));
+    } else {
+      chosenAlarm = new Audio(sfx);
+    }
 
     if (isCountdown) {
       const id = setInterval(() => {
@@ -92,14 +127,15 @@ function TimerContainer({ displaySettings, mode, toggleSettings }) {
           const nextActiveTimer =
             activeTimer === "tomato" ? currBreak : "tomato";
           setActiveTimer(nextActiveTimer);
-          alarm.play();
+          chosenAlarm.play();
+          URL.revokeObjectURL(chosenAlarm.src);
           setCurrentTime(timers[nextActiveTimer] * 60000);
           timerRef.current = timers[nextActiveTimer] * 60000;
         }
       }, 1000);
       return () => clearInterval(id);
     }
-  }, [activeTimer, isCountdown, longBreakCycle, timers]);
+  }, [activeTimer, isCountdown, longBreakCycle, timers, alarmAudio]);
 
   return (
     <main
@@ -122,6 +158,9 @@ function TimerContainer({ displaySettings, mode, toggleSettings }) {
           handleValidSubmission={handleValidSubmission}
           toggleSettings={toggleSettings}
           mode={mode}
+          alarmAudio={alarmAudio}
+          assignAlarm={assignAlarm}
+          addAudio={addAudio}
         />
       )}
     </main>

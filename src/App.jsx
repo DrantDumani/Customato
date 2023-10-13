@@ -19,6 +19,16 @@ function App() {
     }
   }, []);
 
+  useEffect(() => {
+    if (displaySettings) {
+      document.body.style.overflow = "hidden";
+    }
+
+    () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [displaySettings]);
+
   const toggleSettings = () => {
     setDisplaySettings(!displaySettings);
   };
