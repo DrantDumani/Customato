@@ -14,21 +14,27 @@ function UserSettings({
   deleteAudio,
 }) {
   const formValueNames = ["tomato", "shortBreak", "longBreak", "cycle"];
-  const validateValues = (form) => {
+  const validateValues = () => {
     for (let name of formValueNames) {
+      const numFormTimer = Number(formTimers[name]);
       switch (name) {
         case "tomato":
         case "shortBreak":
         case "longBreak":
+          if (!Number.isInteger(numFormTimer) || numFormTimer < 1) {
+            return false;
+          }
+          break;
         case "cycle":
           if (
-            !Number.isInteger(form[name].value) ||
-            Number(form[name].value < 0)
+            !Number.isInteger(Number(formBreakCycle)) ||
+            Number(formBreakCycle) < 1
           ) {
             return false;
           }
       }
     }
+    return true;
   };
 
   return (
@@ -54,7 +60,7 @@ function UserSettings({
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            if (validateValues) {
+            if (validateValues()) {
               handleValidSubmission();
               toggleSettings();
             }
@@ -172,7 +178,7 @@ function UserSettings({
                 className={`timer-form__input timer-form__input--audio`}
                 id="upload-audio"
                 type="file"
-                accept="audio/mpeg"
+                accept="audio/*"
                 onInput={(e) => {
                   addAudio(e.target.files[0]);
                 }}

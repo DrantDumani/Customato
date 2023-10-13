@@ -46,7 +46,7 @@ function TimerContainer({ displaySettings, mode, toggleSettings }) {
     const newBank = alarmAudio.bank.filter((el) => el.name !== audioName);
     const timerNames = ["tomato", "shortBreak", "longBreak"];
     timerNames.forEach((tName) => {
-      if (newAlarmAudio[tName].name === audioName) {
+      if (newAlarmAudio[tName]?.name === audioName) {
         newAlarmAudio[tName] = "";
       }
     });
@@ -121,7 +121,7 @@ function TimerContainer({ displaySettings, mode, toggleSettings }) {
   useEffect(() => {
     let chosenAlarm;
     const customAlarm = alarmAudio[activeTimer];
-    if (customAlarm && customAlarm.type === "audio/mpeg") {
+    if (customAlarm && /audio/.test(customAlarm.type)) {
       chosenAlarm = new Audio(URL.createObjectURL(customAlarm));
     } else {
       chosenAlarm = new Audio(sfx);
