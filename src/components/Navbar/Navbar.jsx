@@ -9,7 +9,7 @@ function Navbar({ toggleSettings, mode, toggleMode }) {
       <nav className={`nav-bar ${mode ? "nav-bar--light" : "nav-bar--dark"}`}>
         <ul className="nav-list">
           <li>
-            <a href="/" className="nav-list__link">
+            <a href="/Customato" className="nav-list__link">
               <Logo className="nav-list__logo" />
               Customato
             </a>
