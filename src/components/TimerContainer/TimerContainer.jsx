@@ -4,6 +4,7 @@ import { UserSettings } from "../UserSettings/UserSettings";
 import sfx from "../../assets/audio/beep.mp3";
 import "./TimerContainer.scss";
 import localforage from "localforage";
+import { Helmet } from "react-helmet-async";
 
 function TimerContainer({ displaySettings, mode, toggleSettings }) {
   const [timers, setTimers] = useState({
@@ -153,33 +154,48 @@ function TimerContainer({ displaySettings, mode, toggleSettings }) {
   }, [activeTimer, isCountdown, longBreakCycle, timers, alarmAudio]);
 
   return (
-    <main
-      className={`main-content ${
-        mode ? "main-content--light" : "main-content--dark"
-      }`}
-    >
-      <Timer
-        isCountdown={isCountdown}
-        toggleCountdown={toggleCountdown}
-        currentTime={currentTime}
-        swapTimerOnBtnClick={swapTimerOnBtnClick}
-        mode={mode}
-      />
-      {displaySettings && (
-        <UserSettings
-          formTimers={formTimers}
-          formBreakCycle={formBreakCycle}
-          editTimerInfo={editTimerInfo}
-          handleValidSubmission={handleValidSubmission}
-          toggleSettings={toggleSettings}
+    <>
+      <Helmet>
+        <title>
+          {isCountdown
+            ? `${String(Math.floor(currentTime / 60000)).padStart(
+                2,
+                "0"
+              )}:${String(Math.floor(currentTime % 60000) / 1000).padStart(
+                2,
+                "0"
+              )}`
+            : "Customato"}
+        </title>
+      </Helmet>
+      <main
+        className={`main-content ${
+          mode ? "main-content--light" : "main-content--dark"
+        }`}
+      >
+        <Timer
+          isCountdown={isCountdown}
+          toggleCountdown={toggleCountdown}
+          currentTime={currentTime}
+          swapTimerOnBtnClick={swapTimerOnBtnClick}
           mode={mode}
-          alarmAudio={alarmAudio}
-          assignAlarm={assignAlarm}
-          addAudio={addAudio}
-          deleteAudio={deleteAudio}
         />
-      )}
-    </main>
+        {displaySettings && (
+          <UserSettings
+            formTimers={formTimers}
+            formBreakCycle={formBreakCycle}
+            editTimerInfo={editTimerInfo}
+            handleValidSubmission={handleValidSubmission}
+            toggleSettings={toggleSettings}
+            mode={mode}
+            alarmAudio={alarmAudio}
+            assignAlarm={assignAlarm}
+            addAudio={addAudio}
+            deleteAudio={deleteAudio}
+          />
+        )}
+      </main>
+    </>
   );
 }
 

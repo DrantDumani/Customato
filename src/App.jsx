@@ -3,6 +3,7 @@ import "./App.scss";
 import { Navbar } from "./components/Navbar/Navbar";
 import { TimerContainer } from "./components/TimerContainer/TimerContainer";
 import { Footer } from "./components/Footer/Footer";
+import { HelmetProvider } from "react-helmet-async";
 
 function App() {
   const [displaySettings, setDisplaySettings] = useState(false);
@@ -34,7 +35,7 @@ function App() {
     setDisplaySettings(!displaySettings);
   };
   return (
-    <>
+    <HelmetProvider>
       <Navbar
         toggleSettings={toggleSettings}
         mode={mode}
@@ -46,7 +47,7 @@ function App() {
         toggleSettings={toggleSettings}
       />
       <Footer mode={mode} />
-    </>
+    </HelmetProvider>
   );
 }
 
