@@ -126,6 +126,9 @@ function TimerContainer({ displaySettings, mode, toggleSettings }) {
     } else {
       chosenAlarm = new Audio(sfx);
     }
+    chosenAlarm.addEventListener("ended", () =>
+      URL.revokeObjectURL(chosenAlarm.src)
+    );
 
     if (isCountdown) {
       const id = setInterval(() => {
@@ -141,7 +144,6 @@ function TimerContainer({ displaySettings, mode, toggleSettings }) {
             activeTimer === "tomato" ? currBreak : "tomato";
           setActiveTimer(nextActiveTimer);
           chosenAlarm.play();
-          URL.revokeObjectURL(chosenAlarm.src);
           setCurrentTime(timers[nextActiveTimer] * 60000);
           timerRef.current = timers[nextActiveTimer] * 60000;
         }
