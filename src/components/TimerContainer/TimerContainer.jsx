@@ -164,7 +164,7 @@ function TimerContainer({ displaySettings, mode, toggleSettings }) {
               )}:${String(Math.floor(currentTime % 60000) / 1000).padStart(
                 2,
                 "0"
-              )}`
+              )} Customato`
             : "Customato"}
         </title>
       </Helmet>
